@@ -1,0 +1,6 @@
+{
+  "name": "Perpustakaan Digital Ramah Anak",
+  "description": "Aplikasi Peminjaman Perpustakaan Digital Sekolah Dasar Ramah Anak untuk mendukung gerakan literasi sekolah dengan visual Glassmorphism dan fitur cerdas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;650;700&family=JetBrains+Mono:wght@450;550&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-primary: #1d4ed8; /* Biru Perpustakaan */
+  --color-primary-light: #3b82f6; 
+  --color-gold: #fbbf24; /* Kuning Emas */
+  --color-gold-dark: #d97706;
+  --color-pastel-green: #34d399; /* Hijau Pastel */
+  --color-pastel-green-dark: #059669;
+}
+
+/* Glassmorphic custom Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.glass-panel-dark {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 18px -4px rgba(0, 0, 0, 0.05);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+}
+
+/* Children-friendly scrolling and nice details */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-frequent-bounce {
+  animation: bounceSlow 3s infinite ease-in-out;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+/* Print Stylesheet for Official Reports & Government Submissions */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm 1.2cm 1.5cm 1.2cm;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .print-table th, .print-table td {
+    border: 1px solid #334155 !important;
+    padding: 4px 6px !important;
+  }
+
+  .print-table th {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    font-weight: bold !important;
+  }
+}

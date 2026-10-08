@@ -1,0 +1,174 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile authenticated via Google Sign-In",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string" },
+        "lastLoginAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Book": {
+      "title": "Book",
+      "description": "Library book catalog record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "publisher": { "type": "string" },
+        "category": { "type": "string" },
+        "isbn": { "type": "string" },
+        "year": { "type": "string" },
+        "quantity": { "type": "number" },
+        "available": { "type": "number" },
+        "coverUrl": { "type": "string" },
+        "color": { "type": "string" },
+        "synopsis": { "type": "string" }
+      },
+      "required": ["id", "title", "author", "category"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student member data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nis": { "type": "string" },
+        "name": { "type": "string" },
+        "className": { "type": "string" },
+        "gender": { "type": "string" },
+        "points": { "type": "number" },
+        "badge": { "type": "string" },
+        "phone": { "type": "string" }
+      },
+      "required": ["id", "nis", "name", "className"]
+    },
+    "Loan": {
+      "title": "Loan",
+      "description": "Book borrowing transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "studentClass": { "type": "string" },
+        "bookIds": { "type": "array" },
+        "bookTitles": { "type": "array" },
+        "loanDate": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "returnDate": { "type": "string" },
+        "status": { "type": "string" },
+        "fine": { "type": "number" },
+        "operatorName": { "type": "string" },
+        "userEmail": { "type": "string" }
+      },
+      "required": ["id", "studentName", "loanDate", "dueDate", "status"]
+    },
+    "VisitorLog": {
+      "title": "VisitorLog",
+      "description": "Guest book entry from visitors and students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "className": { "type": "string" },
+        "purpose": { "type": "string" },
+        "rating": { "type": "number" },
+        "feedback": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "userPhoto": { "type": "string" }
+      },
+      "required": ["id", "name", "role", "purpose", "timestamp"]
+    },
+    "ActivityLogItem": {
+      "title": "ActivityLogItem",
+      "description": "Audit trail log of all library operations across users",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "formattedDate": { "type": "string" },
+        "type": { "type": "string" },
+        "activity": { "type": "string" },
+        "operator": { "type": "string" },
+        "userEmail": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "type", "activity"]
+    },
+    "GalleryPhotoItem": {
+      "title": "GalleryPhotoItem",
+      "description": "School and library transformation photo records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "uploaderName": { "type": "string" },
+        "uploaderRole": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "imageUrl", "date"]
+    },
+    "SchoolSettings": {
+      "title": "SchoolSettings",
+      "description": "School identity and library configuration",
+      "type": "object",
+      "properties": {
+        "identity": { "type": "object" },
+        "maxDays": { "type": "number" },
+        "finePerDay": { "type": "number" },
+        "updatedBy": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["identity"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Registered Google users and their application roles"
+    },
+    "/books/{bookId}": {
+      "schema": "Book",
+      "description": "Books catalog collection"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Students and members collection"
+    },
+    "/loans/{loanId}": {
+      "schema": "Loan",
+      "description": "Circulation loan transactions"
+    },
+    "/visitors/{visitorId}": {
+      "schema": "VisitorLog",
+      "description": "Guest book visitors entries"
+    },
+    "/activities/{activityId}": {
+      "schema": "ActivityLogItem",
+      "description": "Real-time activity logs stream across all users"
+    },
+    "/gallery/{photoId}": {
+      "schema": "GalleryPhotoItem",
+      "description": "Permanent photo gallery uploads"
+    },
+    "/settings/{settingId}": {
+      "schema": "SchoolSettings",
+      "description": "Application settings and school identity"
+    }
+  }
+}

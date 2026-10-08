@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // User profile documents - linked to Google Auth UID
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Books collection - Read by everyone, writeable for updates
+    match /books/{bookId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Students collection - Read by everyone, writeable for updates
+    match /students/{studentId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Loans collection - Read by everyone, writeable for circulation
+    match /loans/{loanId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Visitor logs (Buku Tamu Pengunjung) - Read & Create by all, sync across all emails
+    match /visitors/{visitorId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if true;
+    }
+
+    // Activity audit logs - Live stream of all operations
+    match /activities/{activityId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if true;
+    }
+
+    // Photo Gallery - Permanent shared photo album
+    match /gallery/{photoId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if true;
+    }
+
+    // School Settings & Configurations
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
